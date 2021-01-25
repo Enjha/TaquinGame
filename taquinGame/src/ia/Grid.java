@@ -3,13 +3,12 @@ package ia;
 public class Grid {
     private int n;
     private int m;
-    private final int[] values;
+    private final char[][] values;
 
     public Grid(int n, int m) {
         this.n = n;
         this.m = m;
-        int sizeValues = n * m;
-        this.values = new int[sizeValues-1];
+        this.values = new char[n-1][m-1];
     }
 
     public int getN() {
@@ -28,11 +27,11 @@ public class Grid {
         this.m = m;
     }
 
-    public int[] getValues() {
+    public char[][] getValues() {
         return values;
     }
 
-    public void setintoValues(int i, int values) {
-        this.values[i] = values;
+    public void setintoValues(int i,int j, char values) {
+        this.values[i][j] = values;
     }
 }
