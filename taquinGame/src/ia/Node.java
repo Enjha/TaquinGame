@@ -1,11 +1,11 @@
 package ia;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Node {
     private char value;
     private int position;
-    private ArrayList<Node> listVoisins;
+    private HashMap<String,Node> listVoisins;
 
     public Node(char value){
         this.value = value;
@@ -17,20 +17,14 @@ public class Node {
     public int getPosition() {
         return position;
     }
-    public ArrayList<Node> getVoisins() {
+    public void setPosition(int position){this.position = position;}
+    public HashMap<String,Node> getVoisins() {
         return listVoisins;
     }
 
-    public void switchLeft(){
-
-    }
-    public void switchRight(){
-
-    }
-    public void switchUp(){
-
-    }
-    public void switchDown(){
-
+    public void switchCase(String direction){
+        int i = listVoisins.get(direction).getPosition();
+        listVoisins.get(direction).setPosition(this.getPosition());
+        this.setPosition(i);
     }
 }
