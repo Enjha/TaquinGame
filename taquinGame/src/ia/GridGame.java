@@ -3,19 +3,19 @@ package ia;
 public class GridGame {
     private final int n;
     private final int m;
-    private final char[][] values;
+    private final Node[][] values;
 
     public GridGame(int n, int m) {
         this.n = n;
         this.m = m;
-        this.values = new char[n][m];
+        this.values = new Node[n][m];
     }
 
     public int getN() {return n;}
     public int getM() {return m;}
-    public char[][] getValues() {return values; }
+    public Node[][] getValues() {return values; }
 
-    public void setintoGrid(int x, int y, char values) {
+    public void setintoGrid(int x, int y, Node values) {
         this.values[x][y] = values;
     }
 

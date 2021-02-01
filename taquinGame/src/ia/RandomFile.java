@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class RandomFile {
 
-    private ArrayList<String> listFiles;
+    private final ArrayList<String> listFiles;
 
     public RandomFile() throws URISyntaxException {
        this.listFiles = recupFiles();
@@ -24,10 +24,6 @@ public class RandomFile {
         assert files != null;
         for (File f : files)
             listFiles.add(f.getName());
-        return listFiles;
-    }
-
-    public ArrayList<String> getListFiles(){
         return listFiles;
     }
 
