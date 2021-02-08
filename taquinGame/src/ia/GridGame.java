@@ -1,9 +1,15 @@
 package ia;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URISyntaxException;
+
 public class GridGame {
-    private final int n;
-    private final int m;
-    private final Node[][] values;
+    private int n;
+    private int m;
+    private Node[][] values;
 
     public GridGame(int n, int m) {
         this.n = n;
@@ -13,7 +19,8 @@ public class GridGame {
 
     public int getN() {return n;}
     public int getM() {return m;}
-    public Node[][] getValues() {return values; }
+
+    public Node[][] getValues() {return values;}
 
     public void setintoGrid(int x, int y, Node values) {
         this.values[x][y] = values;
@@ -27,5 +34,4 @@ public class GridGame {
             System.out.println();
         }
     }
-
 }

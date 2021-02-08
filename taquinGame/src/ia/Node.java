@@ -27,4 +27,5 @@ public class Node {
         listVoisins.get(direction).setPosition(this.getPosition());
         this.setPosition(i);
     }
+
 }
