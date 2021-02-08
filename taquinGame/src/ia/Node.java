@@ -5,7 +5,8 @@ import java.util.HashMap;
 public class Node {
     private char value;
     private int position;
-    private HashMap<String,Node> listVoisins;
+    enum Neighbours{ RIGHT, TOP, LEFT, BOT}
+    private HashMap<Neighbours,Node> listVoisins;
 
     public Node(char value){
         this.value = value;
@@ -18,7 +19,7 @@ public class Node {
         return position;
     }
     public void setPosition(int position){this.position = position;}
-    public HashMap<String,Node> getVoisins() {
+    public HashMap<Neighbours,Node> getVoisins() {
         return listVoisins;
     }
 
