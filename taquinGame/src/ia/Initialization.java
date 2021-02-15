@@ -27,8 +27,8 @@ public class Initialization {
             Node caseVide = paddingValues(br, nbline, nbColumns, nodesValue);
             Node caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
             br.close();
-            Grid startingGrid = new Grid(nodesValue,caseVide);
-            Grid resultGrid = new Grid(valuesResults,caseVide);
+            StateGrid startingGrid = new StateGrid(nodesValue,caseVide);
+            StateGrid resultGrid = new StateGrid(valuesResults,caseVide);
             return new GridGame(nbline,nbColumns,startingGrid,resultGrid);
         }
         catch (Exception e){
@@ -43,7 +43,6 @@ public class Initialization {
         for(int i = 0; i<nbline; i++){
             ligneBuffered = br.readLine();
             for(int j=0;j<nbColumns;j++){
-                System.out.print(ligneBuffered.charAt(j));
                 if(ligneBuffered.charAt(j) == ' ') {
                     nodesValue[i][j] = new Node(i, j, ' ');
                     caseVide = nodesValue[i][j];

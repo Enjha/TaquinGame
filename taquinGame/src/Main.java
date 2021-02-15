@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) throws URISyntaxException {
         Initialization init = new Initialization();
         GridGame gridGame = init.initialize();
-        System.out.println(gridGame.getNbColumn()+" "+gridGame.getNbLine());
+        System.out.println(gridGame.getNbLine()+" "+gridGame.getNbColumn());
         StateGrid grid = gridGame.getStartingValues();
         Node caseVide = grid.getCaseVide();
         System.out.println(caseVide.getXposition()+" "+caseVide.getYposition());
