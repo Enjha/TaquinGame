@@ -1,10 +1,10 @@
 package ia;
 
-public class Grid {
+public class StateGrid {
     private final Node caseVide;
     private final Node[][] values;
 
-    public Grid(Node[][] values, Node caseVide) {
+    public StateGrid(Node[][] values, Node caseVide) {
         this.values = values;
         this.caseVide = caseVide;
     }
