@@ -1,37 +1,21 @@
 package ia;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URISyntaxException;
-
 public class GridGame {
-    private int n;
-    private int m;
-    private Node[][] values;
+    private final int nbLine;
+    private final int nbColumn;
+    private Grid startingValues;
+    private final Grid resultsValues;
 
-    public GridGame(int n, int m) {
-        this.n = n;
-        this.m = m;
-        this.values = new Node[n][m];
+
+    public GridGame(int nbLine, int nbColumn, Grid startingValues, Grid resultsValues){
+        this.nbLine = nbLine;
+        this.nbColumn = nbColumn;
+        this.startingValues = startingValues;
+        this.resultsValues = resultsValues;
     }
 
-    public int getN() {return n;}
-    public int getM() {return m;}
-
-    public Node[][] getValues() {return values;}
-
-    public void setintoGrid(int x, int y, Node values) {
-        this.values[x][y] = values;
-    }
-
-    public void printValues(){
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                System.out.print(values[i][j]);
-            }
-            System.out.println();
-        }
-    }
+    public int getNbLine() {return nbLine;}
+    public int getNbColumn() {return nbColumn;}
+    public Grid getStartingValues(){ return startingValues; }
+    public Grid getResultsValues() { return resultsValues; }
 }

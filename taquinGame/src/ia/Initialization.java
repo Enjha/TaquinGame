@@ -1,45 +1,58 @@
 package ia;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URISyntaxException;
 
 public class Initialization {
-
-    public Initialization(){}
 
     public GridGame initialize() throws URISyntaxException {
         RandomFile rf = new RandomFile();
         String nameRandomFile = rf.pikcUpFile();
         try{
-            InputStream ips=new FileInputStream("taquinGame/src/ressources/"+nameRandomFile);
-            InputStreamReader ipsr=new InputStreamReader(ips);
-            BufferedReader br=new BufferedReader(ipsr);
-            String ligne;
+            InputStream ips = new FileInputStream("taquinGame/src/ressources/"+nameRandomFile);
+            InputStreamReader ipsr = new InputStreamReader(ips);
+            BufferedReader br= new BufferedReader(ipsr);
+            String ligneBuffered;
             int nbline = Integer.parseInt(br.readLine());
-            int nbColumn = 0;
-            int line = 0;
-            while ((ligne=br.readLine())!=null){
-                if(ligne.length() > nbColumn){
-                    nbColumn = ligne.length();
-                }
+            br.mark(0);
+            int nbColumns = 0;
+            for(int i = 0; i<2;i++){
+                ligneBuffered = br.readLine();
+                if(ligneBuffered.length() > nbColumns)
+                    nbColumns = ligneBuffered.length();
             }
-            GridGame gridGame = new GridGame(nbline,nbColumn);
             br.reset();
-            while ((ligne=br.readLine())!=null){
-                for(int j=0;j<nbColumn;j++){
-                    gridGame.setintoGrid(line,j, new Node(ligne.charAt(j)));
-                }
-                line++;
-            }
+            Node[][] nodesValue = new Node[nbline][nbColumns];
+            Node[][] valuesResults = new Node[nbline][nbColumns];
+            Node caseVide = paddingValues(br, nbline, nbColumns, nodesValue);
+            Node caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
             br.close();
-            return gridGame;
+            Grid startingGrid = new Grid(nodesValue,caseVide);
+            Grid resultGrid = new Grid(valuesResults,caseVide);
+            return new GridGame(nbline,nbColumns,startingGrid,resultGrid);
         }
         catch (Exception e){
             System.out.println(e.toString());
         }
         return null;
+    }
+
+    private Node paddingValues(BufferedReader br, int nbline, int nbColumns, Node[][] nodesValue) throws IOException {
+        String ligneBuffered;
+        Node caseVide = null;
+        for(int i = 0; i<nbline; i++){
+            ligneBuffered = br.readLine();
+            for(int j=0;j<nbColumns;j++){
+                System.out.print(ligneBuffered.charAt(j));
+                if(ligneBuffered.charAt(j) == ' ') {
+                    nodesValue[i][j] = new Node(i, j, ' ');
+                    caseVide = nodesValue[i][j];
+                }else {
+                    nodesValue[i][j] = new Node(i, j, ligneBuffered.charAt(j));
+                }
+            }
+            System.out.println();
+        }
+        return caseVide;
     }
 }
