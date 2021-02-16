@@ -10,4 +10,8 @@ public class TaquinGame {
     }
     public Grid getStartingValues(){ return startingValues; }
     public Grid getResultsValues() { return resultsValues; }
+
+    public void start(){
+
+    }
 }
