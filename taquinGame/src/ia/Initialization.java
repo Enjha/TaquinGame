@@ -1,11 +1,13 @@
 package ia;
 
+import utils.RandomFile;
+
 import java.io.*;
 import java.net.URISyntaxException;
 
 public class Initialization {
 
-    public GridGame initialize() throws URISyntaxException {
+    public TaquinGame initialize() throws URISyntaxException {
         RandomFile rf = new RandomFile();
         String nameRandomFile = rf.pikcUpFile();
         try{
@@ -27,9 +29,9 @@ public class Initialization {
             Node caseVide = paddingValues(br, nbline, nbColumns, nodesValue);
             Node caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
             br.close();
-            StateGrid startingGrid = new StateGrid(nodesValue,caseVide);
-            StateGrid resultGrid = new StateGrid(valuesResults,caseVide);
-            return new GridGame(nbline,nbColumns,startingGrid,resultGrid);
+            Grid startingGrid = new Grid(nbline,nbColumns,nodesValue,caseVide);
+            Grid resultGrid = new Grid(nbline,nbColumns,valuesResults,caseVide);
+            return new TaquinGame(startingGrid,resultGrid);
         }
         catch (Exception e){
             System.out.println(e.toString());
