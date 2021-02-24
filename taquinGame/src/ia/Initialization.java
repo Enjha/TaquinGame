@@ -24,10 +24,10 @@ public class Initialization {
                     nbColumns = ligneBuffered.length();
             }
             br.reset();
-            Node[][] nodesValue = new Node[nbline][nbColumns];
-            Node[][] valuesResults = new Node[nbline][nbColumns];
-            Node caseVide = paddingValues(br, nbline, nbColumns, nodesValue);
-            Node caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
+            char[][] values = new char[nbline][nbColumns];
+            char[][] valuesResults = new char[nbline][nbColumns];
+            char caseVide = paddingValues(br, nbline, nbColumns, values);
+            char caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
             br.close();
             Grid startingGrid = new Grid(nbline,nbColumns,nodesValue,caseVide);
             Grid resultGrid = new Grid(nbline,nbColumns,valuesResults,caseVide);
@@ -39,17 +39,17 @@ public class Initialization {
         return null;
     }
 
-    private Node paddingValues(BufferedReader br, int nbline, int nbColumns, Node[][] nodesValue) throws IOException {
+    private char paddingValues(BufferedReader br, int nbline, int nbColumns, char[][] values) throws IOException {
         String ligneBuffered;
-        Node caseVide = null;
+        char caseVide = ' ';
         for(int i = 0; i<nbline; i++){
             ligneBuffered = br.readLine();
             for(int j=0;j<nbColumns;j++){
                 if(ligneBuffered.charAt(j) == ' ') {
-                    nodesValue[i][j] = new Node(i, j, ' ');
-                    caseVide = nodesValue[i][j];
+                    values[i][j] = ' ';
+                    caseVide = values[i][j];
                 }else {
-                    nodesValue[i][j] = new Node(i, j, ligneBuffered.charAt(j));
+                    values[i][j] = ligneBuffered.charAt(j);
                 }
             }
             System.out.println();
