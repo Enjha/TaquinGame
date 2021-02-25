@@ -24,13 +24,13 @@ public class Initialization {
                     nbColumns = ligneBuffered.length();
             }
             br.reset();
-            char[][] nodesValue = new char[nbline][nbColumns];
+            char[][] values = new char[nbline][nbColumns];
             char[][] valuesResults = new char[nbline][nbColumns];
-            VoidCase caseVide = paddingValues(br, nbline, nbColumns, nodesValue);
-            VoidCase caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
+            char caseVide = paddingValues(br, nbline, nbColumns, values);
+            char caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
             br.close();
             Grid startingGrid = new Grid(nbline,nbColumns,nodesValue,caseVide);
-            Grid resultGrid = new Grid(nbline,nbColumns,valuesResults,caseVideResult);
+            Grid resultGrid = new Grid(nbline,nbColumns,valuesResults,caseVide);
             return new TaquinGame(startingGrid,resultGrid);
         }
         catch (Exception e){
@@ -39,17 +39,17 @@ public class Initialization {
         return null;
     }
 
-    private VoidCase paddingValues(BufferedReader br, int nbline, int nbColumns, char[][] nodesValue) throws IOException {
+    private char paddingValues(BufferedReader br, int nbline, int nbColumns, char[][] values) throws IOException {
         String ligneBuffered;
-        VoidCase caseVide = null;
+        char caseVide = ' ';
         for(int i = 0; i<nbline; i++){
             ligneBuffered = br.readLine();
             for(int j=0;j<nbColumns;j++){
                 if(ligneBuffered.charAt(j) == ' ') {
-                    nodesValue[i][j] = ' ';
-                    caseVide = new VoidCase(i,j);
+                    values[i][j] = ' ';
+                    caseVide = values[i][j];
                 }else {
-                    nodesValue[i][j] = ligneBuffered.charAt(j);
+                    values[i][j] = ligneBuffered.charAt(j);
                 }
             }
             System.out.println();
