@@ -29,9 +29,9 @@ public class Initialization {
             VoidCase caseVide = paddingValues(br, nbline, nbColumns, values);
             VoidCase caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
             br.close();
-            Grid startingGrid = new Grid(nbline,nbColumns,values,caseVide);
-            Grid resultGrid = new Grid(nbline,nbColumns,valuesResults,caseVideResult);
-            return new TaquinGame(startingGrid,resultGrid);
+            GridState initialState = new GridState(nbline,nbColumns,values,caseVide);
+            GridState finalState = new GridState(nbline,nbColumns,valuesResults,caseVideResult);
+            return new TaquinGame(initialState,finalState);
         }
         catch (Exception e){
             System.out.println(e.toString());
@@ -52,7 +52,6 @@ public class Initialization {
                     values[i][j] = ligneBuffered.charAt(j);
                 }
             }
-            System.out.println();
         }
         return caseVide;
     }
