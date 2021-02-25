@@ -26,11 +26,11 @@ public class Initialization {
             br.reset();
             char[][] values = new char[nbline][nbColumns];
             char[][] valuesResults = new char[nbline][nbColumns];
-            char caseVide = paddingValues(br, nbline, nbColumns, values);
-            char caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
+            VoidCase caseVide = paddingValues(br, nbline, nbColumns, values);
+            VoidCase caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
             br.close();
-            Grid startingGrid = new Grid(nbline,nbColumns,nodesValue,caseVide);
-            Grid resultGrid = new Grid(nbline,nbColumns,valuesResults,caseVide);
+            Grid startingGrid = new Grid(nbline,nbColumns,values,caseVide);
+            Grid resultGrid = new Grid(nbline,nbColumns,valuesResults,caseVideResult);
             return new TaquinGame(startingGrid,resultGrid);
         }
         catch (Exception e){
@@ -39,15 +39,15 @@ public class Initialization {
         return null;
     }
 
-    private char paddingValues(BufferedReader br, int nbline, int nbColumns, char[][] values) throws IOException {
+    private VoidCase paddingValues(BufferedReader br, int nbline, int nbColumns, char[][] values) throws IOException {
         String ligneBuffered;
-        char caseVide = ' ';
+        VoidCase caseVide = null;
         for(int i = 0; i<nbline; i++){
             ligneBuffered = br.readLine();
             for(int j=0;j<nbColumns;j++){
                 if(ligneBuffered.charAt(j) == ' ') {
                     values[i][j] = ' ';
-                    caseVide = values[i][j];
+                    caseVide = new VoidCase(i,j);
                 }else {
                     values[i][j] = ligneBuffered.charAt(j);
                 }
