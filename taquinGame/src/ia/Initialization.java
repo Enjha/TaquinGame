@@ -24,13 +24,13 @@ public class Initialization {
                     nbColumns = ligneBuffered.length();
             }
             br.reset();
-            Node[][] nodesValue = new Node[nbline][nbColumns];
-            Node[][] valuesResults = new Node[nbline][nbColumns];
-            Node caseVide = paddingValues(br, nbline, nbColumns, nodesValue);
-            Node caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
+            char[][] nodesValue = new char[nbline][nbColumns];
+            char[][] valuesResults = new char[nbline][nbColumns];
+            VoidCase caseVide = paddingValues(br, nbline, nbColumns, nodesValue);
+            VoidCase caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
             br.close();
             Grid startingGrid = new Grid(nbline,nbColumns,nodesValue,caseVide);
-            Grid resultGrid = new Grid(nbline,nbColumns,valuesResults,caseVide);
+            Grid resultGrid = new Grid(nbline,nbColumns,valuesResults,caseVideResult);
             return new TaquinGame(startingGrid,resultGrid);
         }
         catch (Exception e){
@@ -39,17 +39,17 @@ public class Initialization {
         return null;
     }
 
-    private Node paddingValues(BufferedReader br, int nbline, int nbColumns, Node[][] nodesValue) throws IOException {
+    private VoidCase paddingValues(BufferedReader br, int nbline, int nbColumns, char[][] nodesValue) throws IOException {
         String ligneBuffered;
-        Node caseVide = null;
+        VoidCase caseVide = null;
         for(int i = 0; i<nbline; i++){
             ligneBuffered = br.readLine();
             for(int j=0;j<nbColumns;j++){
                 if(ligneBuffered.charAt(j) == ' ') {
-                    nodesValue[i][j] = new Node(i, j, ' ');
-                    caseVide = nodesValue[i][j];
+                    nodesValue[i][j] = ' ';
+                    caseVide = new VoidCase(i,j);
                 }else {
-                    nodesValue[i][j] = new Node(i, j, ligneBuffered.charAt(j));
+                    nodesValue[i][j] = ligneBuffered.charAt(j);
                 }
             }
             System.out.println();
