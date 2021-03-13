@@ -26,7 +26,6 @@ public class TaquinGame {
         char[][] values = result.getValues();
         int m = this.getInitialState().getNbLine();
         int n = this.getInitialState().getNbColumn();
-        System.out.println(m +""+n);
         for(int i = 0 ; i < m ;i ++){
             for(int j = 0; j < n ; j++){
                 System.out.print(values[i][j]);

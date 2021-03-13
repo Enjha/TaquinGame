@@ -27,6 +27,7 @@ public class Algorithm {
         GridState currentState;
 
         initialState.printState();
+        System.out.println();
 
         ArrayList<GridState> closedState = new ArrayList<>();
         ArrayList<GridState> openState = new ArrayList<>();

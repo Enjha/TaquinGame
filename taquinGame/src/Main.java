@@ -9,7 +9,8 @@ public class Main {
     public static void main(String[] args) throws URISyntaxException {
         Initialization initialization = new Initialization(AlgorithmEnumeration.DeepSearch);
         TaquinGame taquinGame = initialization.initialize();
-        taquinGame.start();
+        taquinGame.getInitialState().generateNeighbors();
+     //   taquinGame.start();
         System.out.println("Finis !");
     }
 

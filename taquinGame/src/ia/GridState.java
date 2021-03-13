@@ -35,18 +35,24 @@ public class GridState {
             valuesTemp1[x-1][y] = ' ';
             neighbors.add(new GridState(nbLine,nbColumn,valuesTemp1,new VoidCase(x-1,y)));
         }
+        this.printState();
+        System.out.println();
         if(x < nbColumn-1){
             char[][] valuesTemp2 = getValues().clone();
             valuesTemp2[x][y] = values[x+1][y];
             valuesTemp2[x+1][y] = ' ';
             neighbors.add(new GridState(nbLine,nbColumn,valuesTemp2,new VoidCase(x+1,y)));
         }
+        this.printState();
+        System.out.println();
         if(y > 0){
             char[][] valuesTemp3 = getValues().clone();
             valuesTemp3[x][y] = values[x][y-1];
             valuesTemp3[x][y-1] = ' ';
             neighbors.add(new GridState(nbLine,nbColumn,valuesTemp3,new VoidCase(x,y-1)));
         }
+        this.printState();
+        System.out.println();
         if(y < nbLine-1){
             char[][] valuesTemp4 = getValues().clone();
             valuesTemp4[x][y] = values[x][y+1];
@@ -54,6 +60,7 @@ public class GridState {
             neighbors.add(new GridState(nbLine,nbColumn,valuesTemp4,new VoidCase(x,y+1)));
         }
         this.printState();
+        System.out.println();
         return neighbors;
     }
 
