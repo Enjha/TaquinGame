@@ -5,28 +5,33 @@ import ia.TaquinGame;
 
 import java.util.ArrayList;
 
-public class DeepRouteAlgo {
+public class Algorithm {
 
     private final TaquinGame taquinGame;
+    private final AlgorithmEnumeration enumeration;
 
-    public DeepRouteAlgo(TaquinGame taquinGame){
+    public Algorithm(TaquinGame taquinGame, AlgorithmEnumeration enumeration){
         this.taquinGame = taquinGame;
+        this.enumeration = enumeration;
     }
 
     public TaquinGame getTaquinGame(){
         return taquinGame;
     }
+    public AlgorithmEnumeration getEnumeration(){return enumeration;}
 
-    public boolean algorithmeDeep(){
+    public GridState search(){
         GridState initialState = taquinGame.getInitialState();
         GridState finalState = taquinGame.getFinalState();
         GridState currentState;
         ArrayList<GridState> closedState = new ArrayList<>();
         ArrayList<GridState> openState = new ArrayList<>();
         openState.add(initialState);
-
-        while(openState.size() > 0 && openState.get(openState.size()-1) != finalState){
-            currentState = openState.get(openState.size()-1);
+        int head = 0;
+        if(enumeration == AlgorithmEnumeration.DeepSearch)
+            head = openState.size()-1;
+        while(openState.size() > 0 && openState.get(head) != finalState){
+            currentState = openState.get(head);
             openState.remove(currentState);
             closedState.add(currentState);
             /* - générer tous les voisins possibles de e et les insérer dans Ouvert
@@ -37,12 +42,11 @@ public class DeepRouteAlgo {
                     openState.add(grid);
                 }
             }
-
         }
         if(openState.size() == 0)
-            return false;
+            return null;
         else{
-            return false;
+            return openState.get(head);
         }
     }
 

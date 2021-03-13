@@ -37,19 +37,20 @@ public class GridState {
             valuesTemp1[x][y] = values[x-1][y];
             neighbors.add(new GridState(nbLine,nbColumn,valuesTemp1,new VoidCase(x-1,y)));
         }
-        if((x+1) <= (nbColumn - 1)){
+        if((x+1) <= (nbColumn-1)){
             char[][] valuesTemp2 = values;
-            valuesTemp2[x][y] = values[x-1][y];
+            valuesTemp2[x][y] = values[x+1][y];
             neighbors.add(new GridState(nbLine,nbColumn,valuesTemp2,new VoidCase(x+1,y)));
         }
         if((y-1) >= 0){
             char[][] valuesTemp3 = values;
-            valuesTemp3[x][y] = values[x-1][y];
+            valuesTemp3[x][y] = values[x][y-1];
             neighbors.add(new GridState(nbLine,nbColumn,valuesTemp3,new VoidCase(x,y-1)));
         }
-        if((y+1) <= (nbLine - 1)){
+        if((y+1) <= (nbLine-1)){
             char[][] valuesTemp4 = values;
-            valuesTemp4[x][y] = values[x-1][y];
+            System.out.println(y +" "+x);
+            valuesTemp4[x][y] = values[x][y+1];
             neighbors.add(new GridState(nbLine,nbColumn,valuesTemp4,new VoidCase(x,y+1)));
         }
         return neighbors;
