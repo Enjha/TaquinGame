@@ -7,9 +7,8 @@ import java.net.URISyntaxException;
 public class Main {
 
     public static void main(String[] args) throws URISyntaxException {
-        Initialization initialization = new Initialization(AlgorithmEnumeration.BestOneSearch);
+        Initialization initialization = new Initialization(AlgorithmEnumeration.DeepSearch);
         TaquinGame taquinGame = initialization.initialize();
-        System.out.println("lignes:" +taquinGame.getFinalState().getNbLine()+" colonnes:"+taquinGame.getFinalState().getNbColumn() +" XcaseVide:"+taquinGame.getInitialState().getCaseVide().getPosX()+" YcaseVide:"+taquinGame.getInitialState().getCaseVide().getPosY());
         taquinGame.start();
         System.out.println("Finis !");
     }
