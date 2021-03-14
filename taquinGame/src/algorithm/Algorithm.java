@@ -21,13 +21,9 @@ public class Algorithm {
     public AlgorithmEnumeration getEnumeration(){return enumeration;}
 
     public GridState search(){
-        int i = 0;
         GridState initialState = taquinGame.getInitialState();
         GridState finalState = taquinGame.getFinalState();
         GridState currentState;
-
-        initialState.printState();
-        System.out.println();
 
         ArrayList<GridState> closedState = new ArrayList<>();
         ArrayList<GridState> openState = new ArrayList<>();
@@ -36,7 +32,7 @@ public class Algorithm {
         int head = 0;
         if(enumeration == AlgorithmEnumeration.DeepSearch)
             head = openState.size()-1;
-        while(!openState.isEmpty() && openState.get(head).getValues() != finalState.getValues()){
+        while(!openState.isEmpty() && !openState.get(head).equals(finalState)){
             currentState = openState.get(head);
             openState.remove(currentState);
             closedState.add(currentState);
@@ -48,11 +44,7 @@ public class Algorithm {
                     openState.add(grid);
                 }
             }
-            System.out.println("tour numero "+i+": ");
-            currentState.printState();
-            i ++;
         }
-        System.out.println("Algo finis !");
         if(openState.isEmpty())
             return null;
         else{
