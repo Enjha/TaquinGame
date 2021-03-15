@@ -92,7 +92,6 @@ public class GridState implements Cloneable{
             GridState stateTaquin = (GridState) object;
 
             // Compare 2 états
-
             for (int i = 0; i < this.nbLine; i++) {
                 for (int n = 0; n < this.nbColumn; n++) {
                     if (this.values[i][n] != stateTaquin.values[i][n]) {
