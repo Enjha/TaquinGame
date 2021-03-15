@@ -20,24 +20,19 @@ public class Algorithm {
     }
     public AlgorithmEnumeration getEnumeration(){return enumeration;}
 
-    public GridState search(){
+    public GridState search() {
         GridState initialState = taquinGame.getInitialState();
         GridState finalState = taquinGame.getFinalState();
         GridState currentState;
 
-        ArrayList<GridState> closedState = new ArrayList<>();
         ArrayList<GridState> openState = new ArrayList<>();
-
         openState.add(initialState);
-        int head = 0;
-        if(enumeration == AlgorithmEnumeration.DeepSearch)
-            head = openState.size()-1;
-        while(!openState.isEmpty() && !openState.get(head).equals(finalState)){
-            currentState = openState.get(head);
+        ArrayList<GridState> closedState = new ArrayList<>();
+        while(!openState.isEmpty() && !openState.get(openState.size()-1).equals(finalState)){
+            currentState = openState.get(openState.size()-1);
             openState.remove(currentState);
             closedState.add(currentState);
-            /* - générer tous les voisins possibles de e et les insérer dans Ouvert
-                    s'ils ne sont pas déjà dans Ouvert [ni dans Ferme´] - */
+
             ArrayList<GridState> negihbors = currentState.generateNeighbors();
             for(GridState grid : negihbors){
                 if(!openState.contains(grid) && !closedState.contains(grid)){
@@ -48,8 +43,8 @@ public class Algorithm {
         if(openState.isEmpty())
             return null;
         else{
-            return openState.get(head);
+            openState.get(openState.size()-1).printState();
+            return openState.get(openState.size()-1);
         }
     }
-
 }

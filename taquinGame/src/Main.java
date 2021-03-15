@@ -10,7 +10,7 @@ public class Main {
         Initialization initialization = new Initialization(AlgorithmEnumeration.DeepSearch);
         TaquinGame taquinGame = initialization.initialize();
         taquinGame.getInitialState().generateNeighbors();
-     //   taquinGame.start();
+        taquinGame.start();
         System.out.println("Finis !");
     }
 
