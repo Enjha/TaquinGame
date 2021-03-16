@@ -32,7 +32,7 @@ public class TaquinGame {
 
     public void start() {
         Algorithm algo = new Algorithm(this,this.enumeration);
-        GridState result = algo.search();
+        GridState result = algo.algorithm();
         char[][] values = result.getValues();
 
         for(int i = 0 ; i < this.nbLine ;i ++){
