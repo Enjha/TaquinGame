@@ -47,7 +47,23 @@ public class Algorithm {
             return openState.get(openState.size()-1);
         }
     }
-    /*public GridState WidthSearch(){
+
+    public GridState getHeadGrid(ArrayList<GridState> openState){
+        GridState head;
+        if(this.enumeration == AlgorithmEnumeration.DeepSearch) { //file
+            head = openState.get(openState.size() - 1);
+            return head;
+        }
+        else if (this.enumeration == AlgorithmEnumeration.WidthSearch) { //pile
+            head = openState.get(0);
+            return head;
+        }
+        else{
+            System.out.println("error on enumeration returned");
+            return null;
+        }
+    }
+    public GridState algorithm(){
         GridState initialState = taquinGame.getInitialState();
         GridState finalState = taquinGame.getFinalState();
 
@@ -55,12 +71,9 @@ public class Algorithm {
         openState.add(initialState);
         ArrayList<GridState> closedState = new ArrayList<>();
 
-        GridState head = openState.tete(pile ou file)
-        faire en sorte que openstate agisse comme un pile ou comme un file selon l'algo voulu
+        GridState head = getHeadGrid(openState);
 
-
-        partager les taches entre la fonction algo qui apellera
-        celle qui determine les actions selon si c'est pile ou si c'est file
+        /*
         while(!openState.isEmpty() && !openState.get(openState.size()-1).equals(finalState)){
             element courant prend pour valeur la tete de la pile ou file
             on retire element courant de ouvert
@@ -71,6 +84,6 @@ public class Algorithm {
         }
         si ouvert est vide  alors il n'y a pas de solution
         sinon element courant est la solution
-
-    }*/
+    */
+    }
 }
