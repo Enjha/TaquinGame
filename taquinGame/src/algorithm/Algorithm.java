@@ -85,5 +85,6 @@ public class Algorithm {
         si ouvert est vide  alors il n'y a pas de solution
         sinon element courant est la solution
     */
+        return head;
     }
 }
