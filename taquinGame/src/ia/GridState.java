@@ -43,7 +43,7 @@ public class GridState implements Cloneable{
             temp = grid1.values[x][y];
             grid1.setintoValues(x,y, grid1.values[x-1][y]);
             grid1.setintoValues(x-1,y,temp);
-            this.caseVide.setPos(x-1,y);
+            grid1.caseVide.setPos(x-1,y);
             neighbors.add(grid1);
             System.out.println("voisin du haut");
             grid1.printState();
@@ -54,7 +54,7 @@ public class GridState implements Cloneable{
             temp = grid2.values[x][y];
             grid2.setintoValues(x,y, grid2.values[x+1][y]);
             grid2.setintoValues(x+1,y,temp);
-            this.caseVide.setPos(x+1,y);
+            grid2.caseVide.setPos(x+1,y);
             neighbors.add(grid2);
             System.out.println("voisin du bas");
             grid2.printState();
@@ -65,7 +65,7 @@ public class GridState implements Cloneable{
             temp = grid3.values[x][y];
             grid3.setintoValues(x,y, grid3.values[x][y-1]);
             grid3.setintoValues(x,y-1,temp);
-            this.caseVide.setPos(x,y-1);
+            grid3.caseVide.setPos(x,y-1);
             neighbors.add(grid3);
             System.out.println("voisin de gauche");
             grid3.printState();
@@ -76,7 +76,7 @@ public class GridState implements Cloneable{
             temp = grid4.values[x][y];
             grid4.setintoValues(x,y, grid4.values[x][y+1]);
             grid4.setintoValues(x,y+1,temp);
-            this.caseVide.setPos(x,y+1);
+            grid4.caseVide.setPos(x,y+1);
             neighbors.add(grid4);
             System.out.println("voisin de droite");
             grid4.printState();

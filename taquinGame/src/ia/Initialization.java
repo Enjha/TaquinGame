@@ -17,8 +17,7 @@ public class Initialization {
         RandomFile rf = new RandomFile();
         String nameRandomFile = rf.pikcUpFile();
         try{
-          //  InputStream ips = new FileInputStream("taquinGame/src/ressources/"+nameRandomFile);
-            InputStream ips = new FileInputStream("taquinGame/src/ressources/taquin_2x4.grid");
+            InputStream ips = new FileInputStream("taquinGame/src/ressources/"+nameRandomFile);
             InputStreamReader ipsr = new InputStreamReader(ips);
             BufferedReader br= new BufferedReader(ipsr);
             String ligneBuffered;
