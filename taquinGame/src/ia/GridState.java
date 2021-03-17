@@ -41,55 +41,51 @@ public class GridState implements Cloneable{
         ArrayList<GridState> neighbors = new ArrayList<>();
         int x = this.caseVidePosX;
         int y = this.caseVidePosY;
-        char temp;
+        char voidChar = this.values[x][y];
         System.out.println("original:");
         this.printState();
 
         if (x > 0){
             GridState grid1 = this.clone();
-            temp = grid1.values[x][y];
             grid1.setintoValues(x,y, grid1.values[x-1][y]);
-            grid1.setintoValues(x-1,y,temp);
+            grid1.setintoValues(x-1,y,voidChar);
             grid1.setCaseVidePosX(x-1);
             grid1.setCaseVidePosY(y);
             neighbors.add(grid1);
-            System.out.println("voisin du haut");
+            System.out.println("alternative haut");
             grid1.printState();
         }
 
         if(x < nbLine-1){
             GridState grid2 = this.clone();
-            temp = grid2.values[x][y];
             grid2.setintoValues(x,y, grid2.values[x+1][y]);
-            grid2.setintoValues(x+1,y,temp);
+            grid2.setintoValues(x+1,y,voidChar);
             grid2.setCaseVidePosX(x+1);
             grid2.setCaseVidePosY(y);
             neighbors.add(grid2);
-            System.out.println("voisin du bas");
+            System.out.println("alternative bas");
             grid2.printState();
         }
 
         if(y > 0){
             GridState grid3 = this.clone();
-            temp = grid3.values[x][y];
             grid3.setintoValues(x,y, grid3.values[x][y-1]);
-            grid3.setintoValues(x,y-1,temp);
+            grid3.setintoValues(x,y-1,voidChar);
             grid3.setCaseVidePosX(x);
             grid3.setCaseVidePosY(y-1);
             neighbors.add(grid3);
-            System.out.println("voisin de gauche");
+            System.out.println("alternative gauche");
             grid3.printState();
         }
 
         if(y < nbColumn-1){
             GridState grid4 = this.clone();
-            temp = grid4.values[x][y];
             grid4.setintoValues(x,y, grid4.values[x][y+1]);
-            grid4.setintoValues(x,y+1,temp);
+            grid4.setintoValues(x,y+1,voidChar);
             grid4.setCaseVidePosX(x);
             grid4.setCaseVidePosY(y+1);
             neighbors.add(grid4);
-            System.out.println("voisin de droite");
+            System.out.println("alternative droite");
             grid4.printState();
         }
         return neighbors;
