@@ -46,7 +46,7 @@ public class GridState implements Cloneable{
         this.printState();
 
         if (x > 0){
-            GridState grid1 = (GridState) this.clone();
+            GridState grid1 = this.clone();
             temp = grid1.values[x][y];
             grid1.setintoValues(x,y, grid1.values[x-1][y]);
             grid1.setintoValues(x-1,y,temp);
@@ -58,7 +58,7 @@ public class GridState implements Cloneable{
         }
 
         if(x < nbLine-1){
-            GridState grid2 = (GridState) this.clone();
+            GridState grid2 = this.clone();
             temp = grid2.values[x][y];
             grid2.setintoValues(x,y, grid2.values[x+1][y]);
             grid2.setintoValues(x+1,y,temp);
@@ -70,7 +70,7 @@ public class GridState implements Cloneable{
         }
 
         if(y > 0){
-            GridState grid3 = (GridState) this.clone();
+            GridState grid3 = this.clone();
             temp = grid3.values[x][y];
             grid3.setintoValues(x,y, grid3.values[x][y-1]);
             grid3.setintoValues(x,y-1,temp);
@@ -82,7 +82,7 @@ public class GridState implements Cloneable{
         }
 
         if(y < nbColumn-1){
-            GridState grid4 = (GridState) this.clone();
+            GridState grid4 = this.clone();
             temp = grid4.values[x][y];
             grid4.setintoValues(x,y, grid4.values[x][y+1]);
             grid4.setintoValues(x,y+1,temp);
@@ -96,10 +96,8 @@ public class GridState implements Cloneable{
     }
 
     public void printState(){
-        int m = this.nbLine;
-        int n = this.nbColumn;
-        for(int i = 0 ; i < m ;i ++){
-            for(int j = 0; j < n ; j++){
+        for(int i = 0; i < this.nbLine; i ++){
+            for(int j = 0; j < this.nbColumn; j++){
                 System.out.print(this.values[i][j]);
             }
             System.out.println();
@@ -120,15 +118,13 @@ public class GridState implements Cloneable{
                     }
                 }
             }
-
             return true;
         }
-
         return false;
     }
 
-    @Override
-    public Object clone() {
+
+    public GridState clone() {
         GridState taquinstate = new GridState(this.values,this.caseVidePosX,this.caseVidePosY);
 
         char[][] values = new char[this.nbLine][this.nbColumn];
