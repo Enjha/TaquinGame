@@ -6,11 +6,13 @@ public class GridState implements Cloneable{
     private final int nbLine;
     private final int nbColumn;
     private char[][] values;
-    private final VoidCase caseVide;
+    private int caseVidePosX;
+    private int caseVidePosY;
 
-    public GridState(char[][] values, VoidCase caseVide) {
+    public GridState(char[][] values, int caseVidePosX, int caseVidePosY) {
         this.values = values;
-        this.caseVide = caseVide;
+        this.caseVidePosX = caseVidePosX;
+        this.caseVidePosY = caseVidePosY;
         nbLine = values.length;
         nbColumn = values[nbLine-1].length;
     }
@@ -19,8 +21,11 @@ public class GridState implements Cloneable{
         return values;
     }
 
-    public VoidCase getCaseVide(){
-        return this.caseVide;
+    public int getCaseVidePosX(){
+        return this.caseVidePosX;
+    }
+    public int getCaseVidePosY(){
+        return this.caseVidePosY;
     }
 
     public void setintoValues(int x,int y, char c){
@@ -29,11 +34,13 @@ public class GridState implements Cloneable{
     public void setValues(char[][] values){
         this.values = values;
     }
+    public void setCaseVidePosX(int x){this.caseVidePosX = x; }
+    public void setCaseVidePosY(int y){this.caseVidePosY = y; }
 
     public ArrayList<GridState> generateNeighbors() {
         ArrayList<GridState> neighbors = new ArrayList<>();
-        int x = caseVide.getPosX();
-        int y = caseVide.getPosY();
+        int x = this.caseVidePosX;
+        int y = this.caseVidePosY;
         char temp;
         System.out.println("original:");
         this.printState();
@@ -43,7 +50,8 @@ public class GridState implements Cloneable{
             temp = grid1.values[x][y];
             grid1.setintoValues(x,y, grid1.values[x-1][y]);
             grid1.setintoValues(x-1,y,temp);
-            grid1.caseVide.setPos(x-1,y);
+            grid1.setCaseVidePosX(x-1);
+            grid1.setCaseVidePosY(y);
             neighbors.add(grid1);
             System.out.println("voisin du haut");
             grid1.printState();
@@ -54,7 +62,8 @@ public class GridState implements Cloneable{
             temp = grid2.values[x][y];
             grid2.setintoValues(x,y, grid2.values[x+1][y]);
             grid2.setintoValues(x+1,y,temp);
-            grid2.caseVide.setPos(x+1,y);
+            grid2.setCaseVidePosX(x+1);
+            grid2.setCaseVidePosY(y);
             neighbors.add(grid2);
             System.out.println("voisin du bas");
             grid2.printState();
@@ -65,7 +74,8 @@ public class GridState implements Cloneable{
             temp = grid3.values[x][y];
             grid3.setintoValues(x,y, grid3.values[x][y-1]);
             grid3.setintoValues(x,y-1,temp);
-            grid3.caseVide.setPos(x,y-1);
+            grid3.setCaseVidePosX(x);
+            grid3.setCaseVidePosY(y-1);
             neighbors.add(grid3);
             System.out.println("voisin de gauche");
             grid3.printState();
@@ -76,7 +86,8 @@ public class GridState implements Cloneable{
             temp = grid4.values[x][y];
             grid4.setintoValues(x,y, grid4.values[x][y+1]);
             grid4.setintoValues(x,y+1,temp);
-            grid4.caseVide.setPos(x,y+1);
+            grid4.setCaseVidePosX(x);
+            grid4.setCaseVidePosY(y+1);
             neighbors.add(grid4);
             System.out.println("voisin de droite");
             grid4.printState();
@@ -118,7 +129,7 @@ public class GridState implements Cloneable{
 
     @Override
     public Object clone() {
-        GridState taquinstate = new GridState(this.values,this.caseVide);
+        GridState taquinstate = new GridState(this.values,this.caseVidePosX,this.caseVidePosY);
 
         char[][] values = new char[this.nbLine][this.nbColumn];
 

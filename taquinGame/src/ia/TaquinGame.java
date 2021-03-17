@@ -35,12 +35,15 @@ public class TaquinGame {
         GridState result = algo.search();
         char[][] values = result.getValues();
 
+        System.out.println("Grille finale: \n");
+
         for(int i = 0 ; i < this.nbLine ;i ++){
             for(int j = 0; j < this.nbColumn ; j++){
                 System.out.print(values[i][j]);
             }
             System.out.println();
         }
+        System.out.println();
     }
 
 }

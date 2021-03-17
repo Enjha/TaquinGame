@@ -17,7 +17,9 @@ public class Initialization {
         RandomFile rf = new RandomFile();
         String nameRandomFile = rf.pikcUpFile();
         try{
-            InputStream ips = new FileInputStream("taquinGame/src/ressources/"+nameRandomFile);
+           // InputStream ips = new FileInputStream("taquinGame/src/ressources/"+nameRandomFile);
+            InputStream ips = new FileInputStream("taquinGame/src/ressources/taquin_2x4.grid");
+         //   System.out.println("Fichier choisi: "+nameRandomFile);
             InputStreamReader ipsr = new InputStreamReader(ips);
             BufferedReader br= new BufferedReader(ipsr);
             String ligneBuffered;
@@ -35,8 +37,8 @@ public class Initialization {
             VoidCase caseVide = paddingValues(br, nbline, nbColumns, values);
             VoidCase caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
             br.close();
-            GridState initialState = new GridState(values,caseVide);
-            GridState finalState = new GridState(valuesResults,caseVideResult);
+            GridState initialState = new GridState(values,caseVide.getPosX(),caseVide.getPosY());
+            GridState finalState = new GridState(valuesResults,caseVideResult.getPosX(),caseVideResult.getPosY());
             return new TaquinGame(initialState,finalState,nbline,nbColumns,enumeration);
         }
         catch (Exception e){
