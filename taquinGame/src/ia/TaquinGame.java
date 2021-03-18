@@ -29,18 +29,20 @@ public class TaquinGame {
     public void start() {
         Algorithm algo = new Algorithm(this, this.enumeration);
         GridState result = algo.search();
-        char[][] values = result.getValues();
-
-        System.out.println("**************** Grille finale ****************\n");
-
-        for (int i = 0; i < this.nbLine; i++) {
-            for (int j = 0; j < this.nbColumn; j++) {
-                System.out.print(values[i][j]);
+        try {
+            char[][] values = result.getValues();
+            System.out.println("**************** Grille finale ****************\n");
+            for (int i = 0; i < this.nbLine; i++) {
+                for (int j = 0; j < this.nbColumn; j++) {
+                    System.out.print(values[i][j]);
+                }
+                System.out.println();
             }
             System.out.println();
+            System.out.println("***********************************************");
+        }catch (NullPointerException e){
+            System.out.println("Aucune solution Trouvée !");
         }
-        System.out.println();
-        System.out.println("***********************************************");
     }
 
 
