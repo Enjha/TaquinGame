@@ -18,32 +18,30 @@ public class TaquinGame {
         this.nbColumn = nbColumn;
     }
 
-    public GridState getInitialState(){ return initialState; }
-    public GridState getFinalState() { return finalState; }
-    public AlgorithmEnumeration getEnumeration() {
-        return enumeration;
+    public GridState getInitialState() {
+        return initialState;
     }
-    public int getNbLine() {
-        return nbLine;
-    }
-    public int getNbColumn() {
-        return nbColumn;
+
+    public GridState getFinalState() {
+        return finalState;
     }
 
     public void start() {
-        Algorithm algo = new Algorithm(this,this.enumeration);
+        Algorithm algo = new Algorithm(this, this.enumeration);
         GridState result = algo.search();
         char[][] values = result.getValues();
 
-        System.out.println("Grille finale: \n");
+        System.out.println("**************** Grille finale ****************\n");
 
-        for(int i = 0 ; i < this.nbLine ;i ++){
-            for(int j = 0; j < this.nbColumn ; j++){
+        for (int i = 0; i < this.nbLine; i++) {
+            for (int j = 0; j < this.nbColumn; j++) {
                 System.out.print(values[i][j]);
             }
             System.out.println();
         }
         System.out.println();
+        System.out.println("***********************************************");
     }
+
 
 }

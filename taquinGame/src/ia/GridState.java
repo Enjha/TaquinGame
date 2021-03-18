@@ -21,13 +21,6 @@ public class GridState implements Cloneable{
         return values;
     }
 
-    public int getCaseVidePosX(){
-        return this.caseVidePosX;
-    }
-    public int getCaseVidePosY(){
-        return this.caseVidePosY;
-    }
-
     public void setintoValues(int x,int y, char c){
         this.values[x][y] = c;
     }
@@ -43,6 +36,7 @@ public class GridState implements Cloneable{
         int y = this.caseVidePosY;
         char voidChar = this.values[x][y];
         System.out.println("original:");
+        System.out.println("Case vide: "+caseVidePosX+" "+caseVidePosY);
         this.printState();
 
         if (x > 0){
@@ -53,6 +47,7 @@ public class GridState implements Cloneable{
             grid1.setCaseVidePosY(y);
             neighbors.add(grid1);
             System.out.println("alternative haut");
+            System.out.println("Case vide: "+ grid1.caseVidePosX+" "+ grid1.caseVidePosY+"\n");
             grid1.printState();
         }
 
@@ -64,6 +59,7 @@ public class GridState implements Cloneable{
             grid2.setCaseVidePosY(y);
             neighbors.add(grid2);
             System.out.println("alternative bas");
+            System.out.println("Case vide: "+ grid2.caseVidePosX+" "+ grid2.caseVidePosY+"\n");
             grid2.printState();
         }
 
@@ -75,6 +71,7 @@ public class GridState implements Cloneable{
             grid3.setCaseVidePosY(y-1);
             neighbors.add(grid3);
             System.out.println("alternative gauche");
+            System.out.println("Case vide: "+ grid3.caseVidePosX+" "+ grid3.caseVidePosY+"\n");
             grid3.printState();
         }
 
@@ -86,6 +83,7 @@ public class GridState implements Cloneable{
             grid4.setCaseVidePosY(y+1);
             neighbors.add(grid4);
             System.out.println("alternative droite");
+            System.out.println("Case vide: "+ grid4.caseVidePosX+" "+ grid4.caseVidePosY+"\n");
             grid4.printState();
         }
         return neighbors;

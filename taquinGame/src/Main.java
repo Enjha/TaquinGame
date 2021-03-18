@@ -29,8 +29,6 @@ public class Main {
         Initialization initialization = new Initialization(AlgorithmEnumeration.DeepSearch);
         TaquinGame taquinGame = initialization.initialize();
         taquinGame.start();
-        System.out.println("Finis !");
-
     }
 
 }

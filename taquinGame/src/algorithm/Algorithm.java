@@ -19,14 +19,6 @@ public class Algorithm {
         this.enumeration = enumeration;
     }
 
-    public TaquinGame getTaquinGame() {
-        return taquinGame;
-    }
-
-    public AlgorithmEnumeration getEnumeration() {
-        return enumeration;
-    }
-
     public GridState search() {
         GridState initialState = taquinGame.getInitialState();
         GridState finalState = taquinGame.getFinalState();
