@@ -3,11 +3,16 @@ package ia;
 import java.util.ArrayList;
 
 public class GridState implements Cloneable {
-    private final int nbLine;
-    private final int nbColumn;
+    private int nbLine;
+    private int nbColumn;
     private char[][] values;
     private int caseVidePosX;
     private int caseVidePosY;
+    private GridState parent;
+    private ArrayList<GridState> neighbors;
+    private int h;
+    private int f;
+    private int g;
 
     public GridState(char[][] values, int caseVidePosX, int caseVidePosY) {
         this.values = values;
@@ -15,6 +20,8 @@ public class GridState implements Cloneable {
         this.caseVidePosY = caseVidePosY;
         nbLine = values.length;
         nbColumn = values[nbLine - 1].length;
+        this.neighbors = new ArrayList<>();
+        this.setParent(this.getParent());
     }
 
     public char[][] getValues() {
@@ -37,8 +44,43 @@ public class GridState implements Cloneable {
         this.caseVidePosY = y;
     }
 
-    public ArrayList<GridState> generateNeighbors() {
-        ArrayList<GridState> neighbors = new ArrayList<>();
+    public int getCaseVidePosX(){return this.caseVidePosX;}
+
+    public int getCaseVidePosY(){return this.caseVidePosY;}
+
+    public GridState getParent() {
+        return this.parent;
+    }
+
+    public void setParent(GridState parent) {
+        this.parent = parent;
+    }
+
+    public int getG() {
+        return this.g;
+    }
+
+    public void setG(int g) {
+        this.g = g;
+    }
+
+    public int getH() {
+        return this.h;
+    }
+
+    public void setH(int h) {
+        this.h = h;
+    }
+
+    public int getF() {
+        return this.f;
+    }
+
+    public void setF(int f) {
+        this.f = f;
+    }
+
+    public ArrayList<GridState> generateNeighbors(GridState solution, int heuristiqueType) {
         int x = this.caseVidePosX;
         int y = this.caseVidePosY;
         char voidChar = this.values[x][y];
@@ -49,6 +91,14 @@ public class GridState implements Cloneable {
             grid1.setintoValues(x - 1, y, voidChar);
             grid1.setCaseVidePosX(x - 1);
             grid1.setCaseVidePosY(y);
+
+
+            if (heuristiqueType == 1) {
+                grid1.setH(calcH1(grid1, solution));
+            } else {
+                grid1.setH(calcH2(grid1, solution));
+            }
+            grid1.setF(calcF(grid1.getG(), grid1.getH()));
             neighbors.add(grid1);
         }
 
@@ -58,6 +108,13 @@ public class GridState implements Cloneable {
             grid2.setintoValues(x + 1, y, voidChar);
             grid2.setCaseVidePosX(x + 1);
             grid2.setCaseVidePosY(y);
+
+            if (heuristiqueType == 1) {
+                grid2.setH(calcH1(grid2, solution));
+            } else {
+                grid2.setH(calcH2(grid2, solution));
+            }
+            grid2.setF(calcF(grid2.getG(), grid2.getH()));
             neighbors.add(grid2);
         }
 
@@ -67,6 +124,13 @@ public class GridState implements Cloneable {
             grid3.setintoValues(x, y - 1, voidChar);
             grid3.setCaseVidePosX(x);
             grid3.setCaseVidePosY(y - 1);
+
+            if (heuristiqueType == 1) {
+                grid3.setH(calcH1(grid3, solution));
+            } else {
+                grid3.setH(calcH2(grid3, solution));
+            }
+            grid3.setF(calcF(grid3.getG(), grid3.getH()));
             neighbors.add(grid3);
         }
 
@@ -76,20 +140,75 @@ public class GridState implements Cloneable {
             grid4.setintoValues(x, y + 1, voidChar);
             grid4.setCaseVidePosX(x);
             grid4.setCaseVidePosY(y + 1);
+
+            if (heuristiqueType == 1) {
+                grid4.setH(calcH1(grid4, solution));
+            } else {
+                grid4.setH(calcH2(grid4, solution));
+            }
+            grid4.setF(calcF(grid4.getG(), grid4.getH()));
             neighbors.add(grid4);
         }
         return neighbors;
     }
 
-    public void printState() {
-        for (int i = 0; i < this.nbLine; i++) {
-            for (int j = 0; j < this.nbColumn; j++) {
-                System.out.print(this.values[i][j]);
-            }
-            System.out.println();
-        }
-        System.out.println();
+    private static int calcF(int g, int h) {
+        return g + h;
     }
+
+    /**
+     * Calculate h (heuristique: number of box incorrectly placed)
+     */
+    public static int calcH1(GridState currentTaquin, GridState solution) {
+        int h = 0;
+        // Go through the array to check which box is incorrectly placed
+        for (int i = 0; i < currentTaquin.getValues().length; i++) {
+            for (int n = 0; n < currentTaquin.getValues()[i].length; n++) {
+                // Increment 'h' the number of box incorrectly placed
+                if (currentTaquin.getValues()[i][n] != solution.getValues()[i][n]) {
+                    h++;
+                }
+            }
+        }
+
+        return h;
+    }
+
+    /**
+     * Calculate h (heuristique: number of move needed to place all box correctly)
+     */
+    public static int calcH2(GridState currentTaquin, GridState solution) {
+        int h = 0;
+        // Go through the array to check which box is incorrectly placed
+        for (int i = 0; i < currentTaquin.getValues().length; i++) {
+            for (int n = 0; n < currentTaquin.getValues()[i].length; n++) {
+                // Checks if the current state box is equals to the current solution box
+                if (currentTaquin.getValues()[i][n] != solution.getValues()[i][n]) {
+                    for (int j = 0; j < solution.getValues().length; j++) {
+                        for (int m = 0; m < solution.getValues()[j].length; m++) {
+                            // Checks if the current box is equals to the current solution box
+                            if (currentTaquin.getValues()[i][n] == solution.getValues()[j][m]) {
+                                // Calculate the vertical move
+                                if (i > j) {
+                                    h += (i - j);
+                                } else {
+                                    h += (j - i);
+                                }
+                                // Calculate the horizontal move
+                                if (n > m) {
+                                    h += (n - m);
+                                } else {
+                                    h += (m - n);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return h;
+    }
+
 
     @Override
     public boolean equals(Object object) {

@@ -28,7 +28,7 @@ public class TaquinGame {
 
     public void start() {
         Algorithm algo = new Algorithm(this, this.enumeration);
-        GridState result = algo.search();
+       /* GridState result = algo.search(1);
         try {
             char[][] values = result.getValues();
             System.out.println("**************** Grille finale ****************\n");
@@ -42,7 +42,8 @@ public class TaquinGame {
             System.out.println("***********************************************");
         } catch (NullPointerException e) {
             System.out.println("Aucune solution Trouvée !");
-        }
+        }*/
+        algo.search(2);
     }
 
 
