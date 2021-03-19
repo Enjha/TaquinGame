@@ -14,11 +14,11 @@ public abstract class OpenList {
 
     public abstract GridState getHead();
 
-    public void add(GridState grid){
+    public void add(GridState grid) {
         this.openlist.add(grid);
     }
 
-    public void remove(GridState grid){
+    public void remove(GridState grid) {
         this.openlist.remove(grid);
     }
 
@@ -30,7 +30,11 @@ public abstract class OpenList {
         return false;
     }
 
-    public boolean isEmpty(){
+    public int size() {
+        return this.openlist.size();
+    }
+
+    public boolean isEmpty() {
         return this.openlist.size() == 0;
     }
 

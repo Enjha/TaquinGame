@@ -9,26 +9,27 @@ import java.net.URISyntaxException;
 public class Initialization {
 
     private final AlgorithmEnumeration enumeration;
-    public Initialization(AlgorithmEnumeration enumeration){
+
+    public Initialization(AlgorithmEnumeration enumeration) {
         this.enumeration = enumeration;
     }
 
     public TaquinGame initialize() throws URISyntaxException {
         RandomFile rf = new RandomFile();
         String nameRandomFile = rf.pikcUpFile();
-        try{
-           // InputStream ips = new FileInputStream("taquinGame/src/ressources/"+nameRandomFile);
-            InputStream ips = new FileInputStream("taquinGame/src/ressources/taquin_2x4.grid");
-         //   System.out.println("Fichier choisi: "+nameRandomFile);
+        try {
+         //   InputStream ips = new FileInputStream("taquinGame/src/ressources/" + nameRandomFile);
+         //   System.out.println("Fichier choisi: " + nameRandomFile);
+            InputStream ips = new FileInputStream("taquinGame/src/ressources/taquin_3x3b.grid");
             InputStreamReader ipsr = new InputStreamReader(ips);
-            BufferedReader br= new BufferedReader(ipsr);
+            BufferedReader br = new BufferedReader(ipsr);
             String ligneBuffered;
             int nbline = Integer.parseInt(br.readLine());
             br.mark(0);
             int nbColumns = 0;
-            for(int i = 0; i<2;i++){
+            for (int i = 0; i < 2; i++) {
                 ligneBuffered = br.readLine();
-                if(ligneBuffered.length() > nbColumns)
+                if (ligneBuffered.length() > nbColumns)
                     nbColumns = ligneBuffered.length();
             }
             br.reset();
@@ -37,11 +38,10 @@ public class Initialization {
             VoidCase caseVide = paddingValues(br, nbline, nbColumns, values);
             VoidCase caseVideResult = paddingValues(br, nbline, nbColumns, valuesResults);
             br.close();
-            GridState initialState = new GridState(values,caseVide.getPosX(),caseVide.getPosY());
-            GridState finalState = new GridState(valuesResults,caseVideResult.getPosX(),caseVideResult.getPosY());
-            return new TaquinGame(initialState,finalState,nbline,nbColumns,enumeration);
-        }
-        catch (Exception e){
+            GridState initialState = new GridState(values, caseVide.getPosX(), caseVide.getPosY());
+            GridState finalState = new GridState(valuesResults, caseVideResult.getPosX(), caseVideResult.getPosY());
+            return new TaquinGame(initialState, finalState, nbline, nbColumns, enumeration);
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
         return null;
@@ -50,13 +50,13 @@ public class Initialization {
     private VoidCase paddingValues(BufferedReader br, int nbline, int nbColumns, char[][] values) throws IOException {
         String ligneBuffered;
         VoidCase caseVide = null;
-        for(int i = 0; i<nbline; i++){
+        for (int i = 0; i < nbline; i++) {
             ligneBuffered = br.readLine();
-            for(int j=0;j<nbColumns;j++){
-                if(ligneBuffered.charAt(j) == ' ') {
+            for (int j = 0; j < nbColumns; j++) {
+                if (ligneBuffered.charAt(j) == ' ') {
                     values[i][j] = ' ';
-                    caseVide = new VoidCase(i,j);
-                }else {
+                    caseVide = new VoidCase(i, j);
+                } else {
                     values[i][j] = ligneBuffered.charAt(j);
                 }
             }

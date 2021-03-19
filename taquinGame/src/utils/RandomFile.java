@@ -19,16 +19,18 @@ public class RandomFile {
         ClassLoader contextClassLoader =
                 Thread.currentThread().getContextClassLoader();
         URL resource = contextClassLoader.getResource("ressources");
+        assert resource != null;
         File file = new File(resource.toURI());
         File[] files = file.listFiles();
+        assert files != null;
         for (File f : files)
             listFiles.add(f.getName());
         return listFiles;
     }
 
-    public String pikcUpFile(){
+    public String pikcUpFile() {
         Random r = new Random();
-        if(listFiles.size() != 0)
+        if (listFiles.size() != 0)
             return listFiles.get(r.nextInt(listFiles.size() - 1));
         else return null;
     }

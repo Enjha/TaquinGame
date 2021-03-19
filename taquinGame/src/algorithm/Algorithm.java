@@ -38,25 +38,22 @@ public class Algorithm {
             default:
                 break;
         }
-
         openState.add(initialState);
-
         while (!openState.isEmpty() && !openState.getHead().equals(finalState)) {
             currentState = openState.getHead();
             openState.remove(currentState);
             closedState.add(currentState);
-
             ArrayList<GridState> neighbors = currentState.generateNeighbors();
             for (GridState grid : neighbors) {
                 if (!openState.contains(grid) && !closedState.contains(grid)) {
                     openState.add(grid);
                 }
             }
+            System.out.println("Taille de la list ouverte: " + openState.size());
         }
         if (openState.isEmpty())
             return null;
         else {
-            openState.getHead().printState();
             return openState.getHead();
         }
     }

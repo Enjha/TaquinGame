@@ -40,7 +40,7 @@ public class TaquinGame {
             }
             System.out.println();
             System.out.println("***********************************************");
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.out.println("Aucune solution Trouvée !");
         }
     }
