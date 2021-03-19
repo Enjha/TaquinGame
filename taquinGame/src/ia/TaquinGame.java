@@ -28,7 +28,7 @@ public class TaquinGame {
 
     public void start() {
         Algorithm algo = new Algorithm(this, this.enumeration);
-        GridState result = algo.search(1);
+        GridState result = algo.search();
         try {
             char[][] values = result.getValues();
             System.out.println("**************** Grille finale ****************\n");

@@ -50,7 +50,7 @@ public class GridState implements Cloneable {
     }
 
 
-    public ArrayList<GridState> generateNeighbors(GridState solution, int heuristiqueType) {
+    public ArrayList<GridState> generateNeighbors() {
         int x = this.caseVidePosX;
         int y = this.caseVidePosY;
         char voidChar = this.values[x][y];

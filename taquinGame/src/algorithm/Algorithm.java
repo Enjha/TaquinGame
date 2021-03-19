@@ -19,7 +19,7 @@ public class Algorithm {
         this.enumeration = enumeration;
     }
 
-    public GridState search(int heuristiqueType) {
+    public GridState search() {
         final long startTime = System.currentTimeMillis();
         final long endTime;
         GridState initialState = taquinGame.getInitialState();
@@ -45,7 +45,7 @@ public class Algorithm {
             currentState = openState.getHead();
             openState.remove(currentState);
             closedState.add(currentState);
-            ArrayList<GridState> neighbors = currentState.generateNeighbors(finalState,heuristiqueType);
+            ArrayList<GridState> neighbors = currentState.generateNeighbors();
             for (GridState grid : neighbors) {
                 if (!openState.contains(grid) && !closedState.contains(grid)) {
                     openState.add(grid);
