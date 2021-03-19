@@ -3,16 +3,13 @@ package ia;
 import java.util.ArrayList;
 
 public class GridState implements Cloneable {
-    private int nbLine;
-    private int nbColumn;
+    private final int nbLine;
+    private final int nbColumn;
     private char[][] values;
     private int caseVidePosX;
     private int caseVidePosY;
     private GridState parent;
-    private ArrayList<GridState> neighbors;
-    private int h;
-    private int f;
-    private int g;
+    private final ArrayList<GridState> neighbors;
 
     public GridState(char[][] values, int caseVidePosX, int caseVidePosY) {
         this.values = values;
@@ -44,10 +41,6 @@ public class GridState implements Cloneable {
         this.caseVidePosY = y;
     }
 
-    public int getCaseVidePosX(){return this.caseVidePosX;}
-
-    public int getCaseVidePosY(){return this.caseVidePosY;}
-
     public GridState getParent() {
         return this.parent;
     }
@@ -56,29 +49,6 @@ public class GridState implements Cloneable {
         this.parent = parent;
     }
 
-    public int getG() {
-        return this.g;
-    }
-
-    public void setG(int g) {
-        this.g = g;
-    }
-
-    public int getH() {
-        return this.h;
-    }
-
-    public void setH(int h) {
-        this.h = h;
-    }
-
-    public int getF() {
-        return this.f;
-    }
-
-    public void setF(int f) {
-        this.f = f;
-    }
 
     public ArrayList<GridState> generateNeighbors(GridState solution, int heuristiqueType) {
         int x = this.caseVidePosX;
@@ -92,13 +62,6 @@ public class GridState implements Cloneable {
             grid1.setCaseVidePosX(x - 1);
             grid1.setCaseVidePosY(y);
 
-
-            if (heuristiqueType == 1) {
-                grid1.setH(calcH1(grid1, solution));
-            } else {
-                grid1.setH(calcH2(grid1, solution));
-            }
-            grid1.setF(calcF(grid1.getG(), grid1.getH()));
             neighbors.add(grid1);
         }
 
@@ -109,12 +72,6 @@ public class GridState implements Cloneable {
             grid2.setCaseVidePosX(x + 1);
             grid2.setCaseVidePosY(y);
 
-            if (heuristiqueType == 1) {
-                grid2.setH(calcH1(grid2, solution));
-            } else {
-                grid2.setH(calcH2(grid2, solution));
-            }
-            grid2.setF(calcF(grid2.getG(), grid2.getH()));
             neighbors.add(grid2);
         }
 
@@ -125,12 +82,6 @@ public class GridState implements Cloneable {
             grid3.setCaseVidePosX(x);
             grid3.setCaseVidePosY(y - 1);
 
-            if (heuristiqueType == 1) {
-                grid3.setH(calcH1(grid3, solution));
-            } else {
-                grid3.setH(calcH2(grid3, solution));
-            }
-            grid3.setF(calcF(grid3.getG(), grid3.getH()));
             neighbors.add(grid3);
         }
 
@@ -141,12 +92,6 @@ public class GridState implements Cloneable {
             grid4.setCaseVidePosX(x);
             grid4.setCaseVidePosY(y + 1);
 
-            if (heuristiqueType == 1) {
-                grid4.setH(calcH1(grid4, solution));
-            } else {
-                grid4.setH(calcH2(grid4, solution));
-            }
-            grid4.setF(calcF(grid4.getG(), grid4.getH()));
             neighbors.add(grid4);
         }
         return neighbors;
