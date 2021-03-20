@@ -61,6 +61,7 @@ public class GridState implements Cloneable {
             grid1.setintoValues(x - 1, y, voidChar);
             grid1.setCaseVidePosX(x - 1);
             grid1.setCaseVidePosY(y);
+            grid1.setParent(this);
 
             neighbors.add(grid1);
         }
@@ -71,6 +72,7 @@ public class GridState implements Cloneable {
             grid2.setintoValues(x + 1, y, voidChar);
             grid2.setCaseVidePosX(x + 1);
             grid2.setCaseVidePosY(y);
+            grid2.setParent(this);
 
             neighbors.add(grid2);
         }
@@ -81,6 +83,7 @@ public class GridState implements Cloneable {
             grid3.setintoValues(x, y - 1, voidChar);
             grid3.setCaseVidePosX(x);
             grid3.setCaseVidePosY(y - 1);
+            grid3.setParent(this);
 
             neighbors.add(grid3);
         }
@@ -91,6 +94,7 @@ public class GridState implements Cloneable {
             grid4.setintoValues(x, y + 1, voidChar);
             grid4.setCaseVidePosX(x);
             grid4.setCaseVidePosY(y + 1);
+            grid4.setParent(this);
 
             neighbors.add(grid4);
         }
@@ -184,5 +188,15 @@ public class GridState implements Cloneable {
         }
         taquinstate.setValues(values);
         return taquinstate;
+    }
+
+    public void printGrid(){
+        for (int i = 0; i < this.nbLine; i++) {
+            for (int j = 0; j < this.nbColumn; j++) {
+                System.out.print(values[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }

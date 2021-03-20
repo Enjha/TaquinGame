@@ -51,7 +51,6 @@ public class Algorithm {
                     openState.add(grid);
                 }
             }
-            System.out.println("Taille de la list ouverte: " + openState.size());
         }
         if (openState.isEmpty())
             return null;
