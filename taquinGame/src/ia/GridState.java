@@ -3,13 +3,31 @@ package ia;
 import java.util.ArrayList;
 
 public class GridState implements Cloneable {
+    /**
+     * Dimensions de la grille
+     */
     private final int nbLine;
     private final int nbColumn;
+
+    /**
+     * Valeurs de la grille / Parent de la grille / Listes des états possibles (voisins) de la grille
+     */
     private char[][] values;
-    private int caseVidePosX;
-    private int caseVidePosY;
     private GridState parent;
     private final ArrayList<GridState> neighbors;
+
+    /**
+     * Case Vide
+     */
+    private int caseVidePosX;
+    private int caseVidePosY;
+
+    /**
+     * Heuristiques
+     */
+    private int g;
+    private int h;
+    private int f;
 
     public GridState(char[][] values, int caseVidePosX, int caseVidePosY) {
         this.values = values;
@@ -49,8 +67,31 @@ public class GridState implements Cloneable {
         this.parent = parent;
     }
 
+    public int getG() {
+        return this.g;
+    }
 
-    public ArrayList<GridState> generateNeighbors() {
+    public void setG(int g) {
+        this.g = g;
+    }
+
+    public int getH() {
+        return this.h;
+    }
+
+    public void setH(int h) {
+        this.h = h;
+    }
+
+    public int getF() {
+        return this.f;
+    }
+
+    public void setF(int f) {
+        this.f = f;
+    }
+
+    public ArrayList<GridState> generateNeighbors(GridState solution) {
         int x = this.caseVidePosX;
         int y = this.caseVidePosY;
         char voidChar = this.values[x][y];
@@ -63,6 +104,8 @@ public class GridState implements Cloneable {
             grid1.setCaseVidePosY(y);
             grid1.setParent(this);
 
+            grid1.setH(calcH2(grid1, solution));
+            grid1.setF(calcF(grid1.getG(), grid1.getH()));
             neighbors.add(grid1);
         }
 
@@ -74,6 +117,8 @@ public class GridState implements Cloneable {
             grid2.setCaseVidePosY(y);
             grid2.setParent(this);
 
+            grid2.setH(calcH2(grid2, solution));
+            grid2.setF(calcF(grid2.getG(), grid2.getH()));
             neighbors.add(grid2);
         }
 
@@ -85,6 +130,8 @@ public class GridState implements Cloneable {
             grid3.setCaseVidePosY(y - 1);
             grid3.setParent(this);
 
+            grid3.setH(calcH2(grid3, solution));
+            grid3.setF(calcF(grid3.getG(), grid3.getH()));
             neighbors.add(grid3);
         }
 
@@ -96,6 +143,8 @@ public class GridState implements Cloneable {
             grid4.setCaseVidePosY(y + 1);
             grid4.setParent(this);
 
+            grid4.setH(calcH2(grid4, solution));
+            grid4.setF(calcF(grid4.getG(), grid4.getH()));
             neighbors.add(grid4);
         }
         return neighbors;
@@ -106,7 +155,7 @@ public class GridState implements Cloneable {
     }
 
     /**
-     * Calculate h (heuristique: number of box incorrectly placed)
+     * Calculate h (heuristique: Nombre de case mal placée)
      */
     public static int calcH1(GridState currentTaquin, GridState solution) {
         int h = 0;
@@ -124,7 +173,7 @@ public class GridState implements Cloneable {
     }
 
     /**
-     * Calculate h (heuristique: number of move needed to place all box correctly)
+     * Calculate h (heuristique: Nombre de déplacement nécessaire pour arriver a l'état final)
      */
     public static int calcH2(GridState currentTaquin, GridState solution) {
         int h = 0;
@@ -158,6 +207,12 @@ public class GridState implements Cloneable {
         return h;
     }
 
+    /**
+     * Fonctions Utiles :
+     * - boolean equals(Object object): Verifié si deux objets(grilles) sont égales
+     * - GridState clone(): Permet de créer une copie de la grille
+     * - void printGrid(): Permet d'afficher une grille
+     */
 
     @Override
     public boolean equals(Object object) {
@@ -190,7 +245,7 @@ public class GridState implements Cloneable {
         return taquinstate;
     }
 
-    public void printGrid(){
+    public void printGrid() {
         for (int i = 0; i < this.nbLine; i++) {
             for (int j = 0; j < this.nbColumn; j++) {
                 System.out.print(values[i][j]);

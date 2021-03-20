@@ -45,7 +45,7 @@ public class Algorithm {
             currentState = openState.getHead();
             openState.remove(currentState);
             closedState.add(currentState);
-            ArrayList<GridState> neighbors = currentState.generateNeighbors();
+            ArrayList<GridState> neighbors = currentState.generateNeighbors(finalState);
             for (GridState grid : neighbors) {
                 if (!openState.contains(grid) && !closedState.contains(grid)) {
                     openState.add(grid);

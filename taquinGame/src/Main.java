@@ -26,7 +26,7 @@ public class Main {
             break;
         } */
 
-        Initialization initialization = new Initialization(AlgorithmEnumeration.DeepSearch);
+        Initialization initialization = new Initialization(AlgorithmEnumeration.BestOneSearch);
         TaquinGame taquinGame = initialization.initialize();
         taquinGame.start();
     }

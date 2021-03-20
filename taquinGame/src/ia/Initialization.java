@@ -20,7 +20,7 @@ public class Initialization {
         try {
          //   InputStream ips = new FileInputStream("taquinGame/src/ressources/" + nameRandomFile);
          //   System.out.println("Fichier choisi: " + nameRandomFile);
-            InputStream ips = new FileInputStream("taquinGame/src/ressources/taquin_2x4b.grid");
+            InputStream ips = new FileInputStream("taquinGame/src/ressources/taquin_3x3c.grid");
             InputStreamReader ipsr = new InputStreamReader(ips);
             BufferedReader br = new BufferedReader(ipsr);
             String ligneBuffered;
