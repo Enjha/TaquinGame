@@ -3,6 +3,7 @@ package ia;
 import java.util.ArrayList;
 
 public class GridState implements Cloneable {
+
     /**
      * Dimensions de la grille
      */

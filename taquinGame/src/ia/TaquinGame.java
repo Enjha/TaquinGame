@@ -2,6 +2,7 @@ package ia;
 
 import algorithm.Algorithm;
 import algorithm.AlgorithmEnumeration;
+import model.ResultAlgorithm;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class TaquinGame {
         return finalState;
     }
 
-    public int getNbLine(){
+    public int getNbLine() {
         return this.nbLine;
     }
 
@@ -38,26 +39,28 @@ public class TaquinGame {
 
     public void start() {
         Algorithm algo = new Algorithm(this, this.enumeration);
-        GridState result = algo.search();
+        ResultAlgorithm result = algo.search();
         ArrayList<GridState> resultParcour = new ArrayList<>();
 
         try {
-            GridState parent = result;
-            while(parent != null){
+            GridState parent = result.getResultGrid();
+            while (parent != null) {
                 resultParcour.add(parent);
                 parent = parent.getParent();
             }
 
-            for(int i=resultParcour.size()-1;i>=0;i--){
-                int numero = ((resultParcour.size()-1) - i) + 1;
-                if(numero== resultParcour.size())
+            for (int i = resultParcour.size() - 1; i >= 0; i--) {
+                int numero = ((resultParcour.size() - 1) - i) + 1;
+                if (numero == resultParcour.size())
                     System.out.println("************** Grille Finale **************");
                 else
-                    System.out.println("Mouvement numero "+ numero +" :");
+                    System.out.println("Mouvement numero " + numero + " :");
                 resultParcour.get(i).printGrid();
+                if (numero == resultParcour.size())
+                    System.out.println("Solution trouvée en " + result.getTimeNeeded() + " ms.");
             }
 
-        } catch (NullPointerException e) {
+        } catch (Exception e) {
             System.out.println("Aucune solution Trouvée !");
         }
     }

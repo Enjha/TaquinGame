@@ -8,7 +8,7 @@ public class ComparatorList implements Comparator<GridState> {
 
     @Override
     public int compare(GridState o1, GridState o2) {
-        return Integer.compare(o1.getH(),o2.getH());
+        return Integer.compare(o1.getF(), o2.getF());
     }
 
 }

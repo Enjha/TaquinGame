@@ -2,10 +2,7 @@ package algorithm;
 
 import ia.GridState;
 import ia.TaquinGame;
-import model.OpenList;
-import model.OpenPile;
-import model.OpenQueue;
-import model.OpenSortedList;
+import model.*;
 
 import java.util.ArrayList;
 
@@ -19,7 +16,7 @@ public class Algorithm {
         this.enumeration = enumeration;
     }
 
-    public GridState search() {
+    public ResultAlgorithm search() {
         final long startTime = System.currentTimeMillis();
         final long endTime;
         GridState initialState = taquinGame.getInitialState();
@@ -56,8 +53,7 @@ public class Algorithm {
             return null;
         else {
             endTime = System.currentTimeMillis();
-            System.out.println("Solution trouvée en " + (endTime - startTime) + "ms");
-            return openState.getHead();
+            return new ResultAlgorithm(openState.getHead(), endTime - startTime);
         }
     }
 
