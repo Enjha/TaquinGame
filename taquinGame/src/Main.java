@@ -11,6 +11,6 @@ public class Main {
         Initialization initialization = new Initialization(AlgorithmEnumeration.BestOneSearch);
         TaquinGame taquinGame = initialization.initialize();
         taquinGame.start();
-    }
 
+    }
 }

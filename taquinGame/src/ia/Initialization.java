@@ -20,8 +20,8 @@ public class Initialization {
         String nameRandomFile = rf.pikcUpFile();
         try {
             InputStream ips = new FileInputStream("taquinGame/src/ressources/" + nameRandomFile);
-            System.out.println("Fichier choisi: " + nameRandomFile);
             InputStreamReader ipsr = new InputStreamReader(ips);
+            System.out.println("Fichier choisi: "+nameRandomFile);
             BufferedReader br = new BufferedReader(ipsr);
             String ligneBuffered;
             int nbline = Integer.parseInt(br.readLine());

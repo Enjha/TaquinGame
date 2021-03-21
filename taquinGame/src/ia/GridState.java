@@ -105,6 +105,7 @@ public class GridState implements Cloneable {
             grid1.setCaseVidePosY(y);
             grid1.setParent(this);
 
+            grid1.setG(calcH1(grid1, solution));
             grid1.setH(calcH2(grid1, solution));
             grid1.setF(calcF(grid1.getG(), grid1.getH()));
             neighbors.add(grid1);
@@ -118,6 +119,7 @@ public class GridState implements Cloneable {
             grid2.setCaseVidePosY(y);
             grid2.setParent(this);
 
+            grid2.setG(calcH1(grid2, solution));
             grid2.setH(calcH2(grid2, solution));
             grid2.setF(calcF(grid2.getG(), grid2.getH()));
             neighbors.add(grid2);
@@ -131,6 +133,7 @@ public class GridState implements Cloneable {
             grid3.setCaseVidePosY(y - 1);
             grid3.setParent(this);
 
+            grid3.setG(calcH1(grid3, solution));
             grid3.setH(calcH2(grid3, solution));
             grid3.setF(calcF(grid3.getG(), grid3.getH()));
             neighbors.add(grid3);
@@ -144,6 +147,7 @@ public class GridState implements Cloneable {
             grid4.setCaseVidePosY(y + 1);
             grid4.setParent(this);
 
+            grid4.setG(calcH1(grid4, solution));
             grid4.setH(calcH2(grid4, solution));
             grid4.setF(calcF(grid4.getG(), grid4.getH()));
             neighbors.add(grid4);
