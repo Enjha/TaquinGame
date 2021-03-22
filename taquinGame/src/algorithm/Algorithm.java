@@ -15,6 +15,8 @@ public class Algorithm {
     }
 
     public ResultAlgorithm search(AlgorithmEnumeration enumAlgo, int heuristique) {
+        System.out.println("Notre algorithme est en train de résoudre la grille. Si il y a une solution," +
+                " elle s'affichera dans la console ainsi que tous les détails (parcours/heuristiques).");
         final long startTime = System.currentTimeMillis();
         final long endTime;
         GridState initialState = taquinGame.getInitialState();

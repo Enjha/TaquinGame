@@ -15,6 +15,7 @@ import utils.RandomFile;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ApplicationFX extends Application {
@@ -80,6 +81,7 @@ public class ApplicationFX extends Application {
         search.setOnAction(e -> {
             Initialization init = new Initialization();
             TaquinGame taquinGame = null;
+            primaryStage.close();
             switch (choiceAlgo.getValue()) {
                 case "Recherche en profondeur":
                     try {
@@ -115,11 +117,6 @@ public class ApplicationFX extends Application {
                             break;
                     }
             }
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Notre algorithme est en train de résoudre la grille. Si il y a une solution," +
-                    " elle s'affichera dans la console ainsi que tous les détails.");
-            alert.show();
-            primaryStage.close();
         });
 
         choiceAlgo.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
