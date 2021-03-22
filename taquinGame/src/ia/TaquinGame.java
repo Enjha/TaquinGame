@@ -9,14 +9,12 @@ import java.util.ArrayList;
 public class TaquinGame {
     private final GridState initialState;
     private final GridState finalState;
-    private final AlgorithmEnumeration enumeration;
     private final int nbLine;
     private final int nbColumn;
 
-    public TaquinGame(GridState initialState, GridState finalState, int nbLine, int nbColumn, AlgorithmEnumeration enumeration) {
+    public TaquinGame(GridState initialState, GridState finalState, int nbLine, int nbColumn) {
         this.initialState = initialState;
         this.finalState = finalState;
-        this.enumeration = enumeration;
         this.nbLine = nbLine;
         this.nbColumn = nbColumn;
     }
@@ -37,9 +35,9 @@ public class TaquinGame {
         return nbColumn;
     }
 
-    public void start() {
-        Algorithm algo = new Algorithm(this, this.enumeration);
-        ResultAlgorithm result = algo.search();
+    public void start(AlgorithmEnumeration enumAlgo, int heuristique, boolean printHeuristique) {
+        Algorithm algo = new Algorithm(this);
+        ResultAlgorithm result = algo.search(enumAlgo, heuristique);
         ArrayList<GridState> resultParcour = new ArrayList<>();
 
         try {
@@ -56,8 +54,12 @@ public class TaquinGame {
                 else {
                     if (i == resultParcour.size() - 1)
                         System.out.println("Grille initiale:");
-                    else
-                        System.out.println("Mouvement numero " + numero + ", nombre de case mal placées: " + resultParcour.get(i).getG() + ", nombre de déplacement(s) nécessaire(s) pour atteindre l'état final: " + resultParcour.get(i).getH());
+                    else {
+                        if (printHeuristique)
+                            System.out.println("Mouvement numero " + numero + ", nombre de case mal placées: " + resultParcour.get(i).getG() + ", nombre de déplacement(s) nécessaire(s) pour atteindre l'état final: " + resultParcour.get(i).getH());
+                        else
+                            System.out.println("Mouvement numero " + numero);
+                    }
                 }
                 resultParcour.get(i).printGrid();
                 if (numero == resultParcour.size() - 1)

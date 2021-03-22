@@ -9,14 +9,12 @@ import java.util.ArrayList;
 public class Algorithm {
 
     private final TaquinGame taquinGame;
-    private final AlgorithmEnumeration enumeration;
 
-    public Algorithm(TaquinGame taquinGame, AlgorithmEnumeration enumeration) {
+    public Algorithm(TaquinGame taquinGame) {
         this.taquinGame = taquinGame;
-        this.enumeration = enumeration;
     }
 
-    public ResultAlgorithm search() {
+    public ResultAlgorithm search(AlgorithmEnumeration enumAlgo, int heuristique) {
         final long startTime = System.currentTimeMillis();
         final long endTime;
         GridState initialState = taquinGame.getInitialState();
@@ -24,7 +22,7 @@ public class Algorithm {
         GridState currentState;
         ArrayList<GridState> closedState = new ArrayList<>();
         OpenList openState = null;
-        switch (this.enumeration) {
+        switch (enumAlgo) {
             case DeepSearch:
                 openState = new OpenPile(new ArrayList<>());
                 break;
@@ -32,7 +30,7 @@ public class Algorithm {
                 openState = new OpenQueue(new ArrayList<>());
                 break;
             case BestOneSearch:
-                openState = new OpenSortedList(new ArrayList<>());
+                openState = new OpenSortedList(new ArrayList<>(), heuristique);
                 break;
             default:
                 break;

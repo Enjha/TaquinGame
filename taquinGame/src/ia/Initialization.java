@@ -1,27 +1,19 @@
 package ia;
 
-import algorithm.AlgorithmEnumeration;
-import utils.RandomFile;
-
-import javax.rmi.ssl.SslRMIClientSocketFactory;
 import java.io.*;
 import java.net.URISyntaxException;
 
 public class Initialization {
 
-    private final AlgorithmEnumeration enumeration;
 
-    public Initialization(AlgorithmEnumeration enumeration) {
-        this.enumeration = enumeration;
+    public Initialization() {
     }
 
-    public TaquinGame initialize() throws URISyntaxException {
-        RandomFile rf = new RandomFile();
-        String nameRandomFile = rf.pikcUpFile();
+    public TaquinGame initialize(String nameRandomFile) throws URISyntaxException {
         try {
             InputStream ips = new FileInputStream("taquinGame/src/ressources/" + nameRandomFile);
             InputStreamReader ipsr = new InputStreamReader(ips);
-            System.out.println("Fichier choisi: "+nameRandomFile+"\n");
+            System.out.println("Fichier choisi: " + nameRandomFile + "\n");
             BufferedReader br = new BufferedReader(ipsr);
             String ligneBuffered;
             int nbline = Integer.parseInt(br.readLine());
@@ -42,7 +34,7 @@ public class Initialization {
             br.close();
             GridState initialState = new GridState(values, caseVide.getPosX(), caseVide.getPosY());
             GridState finalState = new GridState(valuesResults, caseVideResult.getPosX(), caseVideResult.getPosY());
-            return new TaquinGame(initialState, finalState, nbline, nbColumns, enumeration);
+            return new TaquinGame(initialState, finalState, nbline, nbColumns);
         } catch (Exception e) {
             e.printStackTrace();
         }

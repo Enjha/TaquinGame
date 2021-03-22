@@ -7,8 +7,11 @@ import java.util.ArrayList;
 
 public class OpenSortedList extends OpenList {
 
-    public OpenSortedList(ArrayList<GridState> sortedList) {
+    private int heuristique;
+
+    public OpenSortedList(ArrayList<GridState> sortedList, int heuristique) {
         super(sortedList);
+        this.heuristique = heuristique;
     }
 
     @Override
@@ -17,14 +20,14 @@ public class OpenSortedList extends OpenList {
     }
 
     @Override
-    public void add(GridState grid){
+    public void add(GridState grid) {
         this.openlist.add(grid);
-        this.openlist.sort(new ComparatorList());
+        this.openlist.sort(new ComparatorList(this.heuristique));
     }
 
     @Override
     public void remove(GridState grid) {
         this.openlist.remove(grid);
-        this.openlist.sort(new ComparatorList());
+        this.openlist.sort(new ComparatorList(this.heuristique));
     }
 }
