@@ -164,10 +164,10 @@ public class GridState implements Cloneable {
      */
     public static int calcH1(GridState currentTaquin, GridState solution) {
         int h = 0;
-        // Go through the array to check which box is incorrectly placed
+        //On parcour la grille pour vérifier si les cases sont bien placées
         for (int i = 0; i < currentTaquin.getValues().length; i++) {
             for (int n = 0; n < currentTaquin.getValues()[i].length; n++) {
-                // Increment 'h' the number of box incorrectly placed
+                //On incrémente 'h', qui est le nombre de cases mal placées
                 if (currentTaquin.getValues()[i][n] != solution.getValues()[i][n]) {
                     h++;
                 }
@@ -182,22 +182,22 @@ public class GridState implements Cloneable {
      */
     public static int calcH2(GridState currentTaquin, GridState solution) {
         int h = 0;
-        // Go through the array to check which box is incorrectly placed
+        //On parcour la grille pour vérifier si des cases sont mal placées
         for (int i = 0; i < currentTaquin.getValues().length; i++) {
             for (int n = 0; n < currentTaquin.getValues()[i].length; n++) {
-                // Checks if the current state box is equals to the current solution box
+                //Verifie si la case de notre état courrant est différente de la case de notre état final
                 if (currentTaquin.getValues()[i][n] != solution.getValues()[i][n]) {
                     for (int j = 0; j < solution.getValues().length; j++) {
                         for (int m = 0; m < solution.getValues()[j].length; m++) {
-                            // Checks if the current box is equals to the current solution box
+                            //Verifie si la case de l'état courrant es egale à la case de l'état final
                             if (currentTaquin.getValues()[i][n] == solution.getValues()[j][m]) {
-                                // Calculate the vertical move
+                                // On calcule les déplacements verticales
                                 if (i > j) {
                                     h += (i - j);
                                 } else {
                                     h += (j - i);
                                 }
-                                // Calculate the horizontal move
+                                // On calcule les déplacements horizonales
                                 if (n > m) {
                                     h += (n - m);
                                 } else {

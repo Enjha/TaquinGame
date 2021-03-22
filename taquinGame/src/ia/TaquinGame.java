@@ -57,7 +57,7 @@ public class TaquinGame {
                     if (i == resultParcour.size() - 1)
                         System.out.println("Grille initiale:");
                     else
-                        System.out.println("Mouvement numero " + numero + ", nombre de case mal placées: " + resultParcour.get(i).getG() + ", nombre de déplacement nécessaire poru atteindre l'état final: " + resultParcour.get(i).getH());
+                        System.out.println("Mouvement numero " + numero + ", nombre de case mal placées: " + resultParcour.get(i).getG() + ", nombre de déplacement(s) nécessaire(s) pour atteindre l'état final: " + resultParcour.get(i).getH());
                 }
                 resultParcour.get(i).printGrid();
                 if (numero == resultParcour.size() - 1)

@@ -21,7 +21,7 @@ public class Initialization {
         try {
             InputStream ips = new FileInputStream("taquinGame/src/ressources/" + nameRandomFile);
             InputStreamReader ipsr = new InputStreamReader(ips);
-            System.out.println("Fichier choisi: "+nameRandomFile);
+            System.out.println("Fichier choisi: "+nameRandomFile+"\n");
             BufferedReader br = new BufferedReader(ipsr);
             String ligneBuffered;
             int nbline = Integer.parseInt(br.readLine());
