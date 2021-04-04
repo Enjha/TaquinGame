@@ -6,7 +6,7 @@ import java.util.Comparator;
 
 public class ComparatorList implements Comparator<GridState> {
 
-    private int heuristique;
+    private final int heuristique;
 
     public ComparatorList(int heuristique) {
         this.heuristique = heuristique;
@@ -16,14 +16,13 @@ public class ComparatorList implements Comparator<GridState> {
     public int compare(GridState o1, GridState o2) {
         switch (heuristique) {
             case 1:
-                return Integer.compare(o1.getG(), o2.getG());
+                return Integer.compare(o1.getH1(), o2.getH1());
             case 2:
-                return Integer.compare(o1.getH(), o2.getH());
+                return Integer.compare(o1.getH2(), o2.getH2());
             case 3:
-                return Integer.compare(o1.getF(), o2.getF());
-            default:
-                return 0;
+                return Integer.compare(o1.getH3(), o2.getH3());
         }
+        return Integer.compare(o1.getH3(), o2.getH3());
     }
 
 }

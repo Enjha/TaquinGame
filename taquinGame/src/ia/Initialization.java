@@ -34,7 +34,7 @@ public class Initialization {
             br.close();
             GridState initialState = new GridState(values, caseVide.getPosX(), caseVide.getPosY());
             GridState finalState = new GridState(valuesResults, caseVideResult.getPosX(), caseVideResult.getPosY());
-            return new TaquinGame(initialState, finalState, nbline, nbColumns);
+            return new TaquinGame(initialState, finalState);
         } catch (Exception e) {
             e.printStackTrace();
         }

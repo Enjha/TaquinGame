@@ -68,27 +68,27 @@ public class GridState implements Cloneable {
         this.parent = parent;
     }
 
-    public int getG() {
+    public int getH1() {
         return this.g;
     }
 
-    public void setG(int g) {
+    public void setH1(int g) {
         this.g = g;
     }
 
-    public int getH() {
+    public int getH2() {
         return this.h;
     }
 
-    public void setH(int h) {
+    public void setH2(int h) {
         this.h = h;
     }
 
-    public int getF() {
+    public int getH3() {
         return this.f;
     }
 
-    public void setF(int f) {
+    public void setH3(int f) {
         this.f = f;
     }
 
@@ -105,9 +105,9 @@ public class GridState implements Cloneable {
             grid1.setCaseVidePosY(y);
             grid1.setParent(this);
 
-            grid1.setG(calcH1(grid1, solution));
-            grid1.setH(calcH2(grid1, solution));
-            grid1.setF(calcF(grid1.getG(), grid1.getH()));
+            grid1.setH1(calcH1(grid1, solution));
+            grid1.setH2(calcH2(grid1, solution));
+            grid1.setH3(calcF(grid1.getH1(), grid1.getH2()));
             neighbors.add(grid1);
         }
 
@@ -119,9 +119,9 @@ public class GridState implements Cloneable {
             grid2.setCaseVidePosY(y);
             grid2.setParent(this);
 
-            grid2.setG(calcH1(grid2, solution));
-            grid2.setH(calcH2(grid2, solution));
-            grid2.setF(calcF(grid2.getG(), grid2.getH()));
+            grid2.setH1(calcH1(grid2, solution));
+            grid2.setH2(calcH2(grid2, solution));
+            grid2.setH3(calcF(grid2.getH1(), grid2.getH2()));
             neighbors.add(grid2);
         }
 
@@ -133,9 +133,9 @@ public class GridState implements Cloneable {
             grid3.setCaseVidePosY(y - 1);
             grid3.setParent(this);
 
-            grid3.setG(calcH1(grid3, solution));
-            grid3.setH(calcH2(grid3, solution));
-            grid3.setF(calcF(grid3.getG(), grid3.getH()));
+            grid3.setH1(calcH1(grid3, solution));
+            grid3.setH2(calcH2(grid3, solution));
+            grid3.setH3(calcF(grid3.getH1(), grid3.getH2()));
             neighbors.add(grid3);
         }
 
@@ -147,9 +147,9 @@ public class GridState implements Cloneable {
             grid4.setCaseVidePosY(y + 1);
             grid4.setParent(this);
 
-            grid4.setG(calcH1(grid4, solution));
-            grid4.setH(calcH2(grid4, solution));
-            grid4.setF(calcF(grid4.getG(), grid4.getH()));
+            grid4.setH1(calcH1(grid4, solution));
+            grid4.setH2(calcH2(grid4, solution));
+            grid4.setH3(calcF(grid4.getH1(), grid4.getH2()));
             neighbors.add(grid4);
         }
         return neighbors;

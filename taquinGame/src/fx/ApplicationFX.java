@@ -15,7 +15,6 @@ import utils.RandomFile;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ApplicationFX extends Application {
@@ -107,12 +106,15 @@ public class ApplicationFX extends Application {
                     }
                     switch (choiceHeur.getValue()) {
                         case "Nombres de cases mal placées":
+                            assert taquinGame != null;
                             taquinGame.start(AlgorithmEnumeration.BestOneSearch, 1, heur.isSelected());
                             break;
                         case "Nombres de déplacements nécéssaire pour arriver a l'état final":
+                            assert taquinGame != null;
                             taquinGame.start(AlgorithmEnumeration.BestOneSearch, 2, heur.isSelected());
                             break;
                         case "Somme des deux heuristiques":
+                            assert taquinGame != null;
                             taquinGame.start(AlgorithmEnumeration.BestOneSearch, 3, heur.isSelected());
                             break;
                     }

@@ -9,14 +9,10 @@ import java.util.ArrayList;
 public class TaquinGame {
     private final GridState initialState;
     private final GridState finalState;
-    private final int nbLine;
-    private final int nbColumn;
 
-    public TaquinGame(GridState initialState, GridState finalState, int nbLine, int nbColumn) {
+    public TaquinGame(GridState initialState, GridState finalState) {
         this.initialState = initialState;
         this.finalState = finalState;
-        this.nbLine = nbLine;
-        this.nbColumn = nbColumn;
     }
 
     public GridState getInitialState() {
@@ -25,14 +21,6 @@ public class TaquinGame {
 
     public GridState getFinalState() {
         return finalState;
-    }
-
-    public int getNbLine() {
-        return this.nbLine;
-    }
-
-    public int getNbColumn() {
-        return nbColumn;
     }
 
     public void start(AlgorithmEnumeration enumAlgo, int heuristique, boolean printHeuristique) {
@@ -56,7 +44,7 @@ public class TaquinGame {
                         System.out.println("Grille initiale:");
                     else {
                         if (printHeuristique)
-                            System.out.println("Mouvement numero " + numero + ", nombre de case mal placées: " + resultParcour.get(i).getG() + ", nombre de déplacement(s) nécessaire(s) pour atteindre l'état final: " + resultParcour.get(i).getH());
+                            System.out.println("Mouvement numero " + numero + ", nombre de case mal placées: " + resultParcour.get(i).getH1() + ", nombre de déplacement(s) nécessaire(s) pour atteindre l'état final: " + resultParcour.get(i).getH2());
                         else
                             System.out.println("Mouvement numero " + numero);
                     }
